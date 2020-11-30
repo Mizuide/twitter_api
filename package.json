@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx npm-run-all start:build start:f",
-    "start:dev":"webpack-dev-server --content-base src --mode development --inline",
+    "start": "npx npm-run-all start:build start:server",
+    "start:dev":"npx npm-run-all --parallel start-dev-server start:devServer",
+    "start-dev-server":"webpack-dev-server --content-base src --mode development --inline",
     "start:build": "npx webpack --mode production",
-    "start:f": "node onHeroku.js" 
+    "start:server": "node onHeroku.js", 
+    "start:devServer": "node developServer.js" 
+ 
   },
   "author": "",
   "license": "ISC",

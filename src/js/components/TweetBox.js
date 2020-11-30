@@ -1,4 +1,3 @@
-import { errors } from "faunadb";
 import React from "react";
 import TweetEmbed from 'react-tweet-embed';
 
@@ -28,7 +27,7 @@ export default class TweetBox extends React.Component {
 
     render() {
         return (
-            <div className='tweet indicator' success={this.state.success}>
+            <div className='tweet' success={this.state.success}>
                 <TweetEmbed
                     onTweetLoadSuccess={this.onSuccess.bind(this)}
                     id={this.props.id}

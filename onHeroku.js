@@ -1,6 +1,7 @@
 var path = require('path');
 var querystring = require("querystring");
 var express = require('express');
+var axios = require('axios');
 const fs = require('fs');
 
 var app = express();
@@ -40,7 +41,6 @@ function postToSearch(token, id, nextToken) {
             },
         }
     )
-
     let param = '(from:' + id + ')';
 
     let obj = {
@@ -68,11 +68,12 @@ if (process.env.ENV === 'PROD') {
         resultTweets = response.data.results;
 
         while (typeof nextToken !== "undefined") {
-            await postToSearch(barerToken, response.data.nezxt).then(res => response = res).catch(e => console.log(e.response));
+            await postToSearch(barerToken, response.data.next).then(res => response = res).catch(e => console.log(e.response));
             nextToken = response.data.next;
             resultTweets = resultTweets.concat(response.data.results);
         }
         //並び替え
+        if(req.body.sortRule)
         resultTweets.sort(sortRuleFav);
         res.writeHead(200, {
             'Content-Type': 'text/json',

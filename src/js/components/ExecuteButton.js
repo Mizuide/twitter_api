@@ -3,7 +3,7 @@ import React from "react";
 
 export default class ExecuteButton extends React.Component {
 
-
+static 
 
     render() {
         return (
